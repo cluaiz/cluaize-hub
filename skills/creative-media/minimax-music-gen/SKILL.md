@@ -1,4 +1,5 @@
 ---
+
 name: minimax-music-gen
 version: 1.0.0
 description: |
