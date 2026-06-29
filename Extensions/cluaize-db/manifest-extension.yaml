@@ -1,0 +1,32 @@
+name: "cluaize-db"
+version: "1.0.0"
+description: "Native Muscle for the Cluaize Neural Database."
+author: "Cluaiz Technologies"
+type: "extension"
+
+discovery:
+  semantic_triggers: ["database", "cdql", "store", "fetch", "save"]
+  cel_grammar: "use extension::cluaize-db -> execute(...)"
+
+activation:
+  lazy_load: true
+  trigger_on: 
+    - "on_command:use extension::cluaize-db"
+
+permissions:
+  max_memory_mb: 256
+  max_cpu_time_ms: 5000
+  network_access: false
+  vram_kv_inject: true
+  file_system: "read_write"
+  mid_layer_jit_injection: true
+
+system_bindings:
+  - "system_booster.think_mode"
+  - "permission.vectorize_user_input"
+
+execution:
+  envelope: "NATIVE"
+  entry_point: "execute_cel"
+  payload_format: "JSON"
+  binary_path: "native/target/release/cluaizd_engine.dll"

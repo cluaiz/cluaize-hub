@@ -1,0 +1,14 @@
+// Fast Query Macro
+// Executed by the AI when `system_booster.think_mode` is OFF.
+// Optimized for zero-latency fetching.
+
+let $query = "Rust latest version release date";
+
+let $fast_result = use extension::cluaize-search -> query(
+    q: $query,
+    max_context_length: 1024, // Keep context tiny for fast LLM ingestion
+    timeout_secs: 3,          // Fail fast
+    mirrors: ["https://lite.duckduckgo.com"] // Use lite mirrors if applicable
+);
+
+return $fast_result;

@@ -1,0 +1,40 @@
+{
+  "results": [
+    {
+      "favicon": "https://www.google.com/s2/favicons?sz=64&domain=www.mankier.com",
+      "raw_content": null,
+      "snippet": "* Run the default binary target: `cargo [r|run]`. * Run the specified binary: `cargo [r|run] --bin name`. * Run the specified example: `cargo [r|run] --example name`. * Activate a space or comma separated list of features: `cargo [r|run] [-F|--features] \"feature1 feature2 ...\"`. * Disable the default features: `cargo [r|run] --no-default-features`. * Activate all available features: `cargo [r|run] --all-features`. * Run with the given profile: `cargo [r|run] --profile name`. Run a binary or example of the local package. Unlike cargo-test(1) and cargo-bench(1), **cargo run** sets the working directory of the binary executed to the current working directory, same as if it was executed in the shell directly. When no target selection options are given, **cargo run** will run the binary target. Or, the **default-run** field may be specified in the **[package]** section of **Cargo.toml** to choose the name of the binary to run by default. This may also be specified with the **build.target** *config value* <>.",
+      "title": "cargo-run: Run the current package | Man Page | Commands | cargo | ManKier",
+      "url": "https://www.mankier.com/1/cargo-run"
+    },
+    {
+      "favicon": "https://www.google.com/s2/favicons?sz=64&domain=man.archlinux.org",
+      "raw_content": null,
+      "snippet": "| CARGO-RUN(1) | General Commands Manual | CARGO-RUN(1) |. cargo-run — Run the current package. Run a binary or example of the local package. All the arguments following the two dashes (**--**) are passed to the binary to run. Unlike cargo-test(1) and cargo-bench(1), **cargo run** sets the working directory of the binary executed to the current working directory, same as if it was executed in the shell directly. By default, the package in the current working directory is selected. The **-p** flag can be used to choose a different package in a workspace. When no target selection options are given, **cargo run** will run the binary target. Or, the **default-run** field may be specified in the **[package]** section of **Cargo.toml** to choose the name of the binary to run by default. When no feature options are given, the **default** feature is activated for every selected package. Run for the specified target architecture. This may also be specified with the **build.target** *config value* .",
+      "title": "cargo-run(1) — Arch manual pages",
+      "url": "https://man.archlinux.org/man/cargo-run.1.en"
+    },
+    {
+      "favicon": "https://www.google.com/s2/favicons?sz=64&domain=stackoverflow.com",
+      "raw_content": null,
+      "snippet": "You can run a specific example with: cargo run --example name_of_example. where name_of_example is the base filename (without .rs ).",
+      "title": "How do I run a project's example using Cargo? - Stack Overflow",
+      "url": "https://stackoverflow.com/questions/54469463/how-do-i-run-a-projects-example-using-cargo"
+    },
+    {
+      "favicon": "https://www.google.com/s2/favicons?sz=64&domain=rustwiki.org",
+      "raw_content": null,
+      "snippet": "# cargo-run(1). cargo-run --- Run the current package. Run a binary or example of the local package. Unlike cargo-test(1) and cargo-bench(1), `cargo run` sets the working directory of the binary executed to the current working directory, same as if it was executed in the shell directly. ## OPTIONS. By default, the package in the current working directory is selected. The `-p` flag can be used to choose a different package in a workspace. When no target selection options are given, `cargo run` will run the binary target. Or, the `default-run` field may be specified in the `[package]` section of `Cargo.toml` to choose the name of the binary to run by default. When no feature options are given, the `default` feature is activated for every selected package. This may also be specified with the `build.target` config value. * `html` (unstable, requires `-Zunstable-options`): Write a human-readable file `cargo-timing.html` to the `target/cargo-timings` directory with a report of the compilation.",
+      "title": "cargo run - The Cargo Book",
+      "url": "https://rustwiki.org/en/cargo/commands/cargo-run.html"
+    },
+    {
+      "favicon": "https://www.google.com/s2/favicons?sz=64&domain=users.rust-lang.org",
+      "raw_content": null,
+      "snippet": "I am trying to setup a project for embedded experiments. I would like these all in one project where I can just run the example from the examples directory.",
+      "title": "Running cargo run --examples for embedded project - help",
+      "url": "https://users.rust-lang.org/t/running-cargo-run-examples-for-embedded-project/124900"
+    }
+  ],
+  "status": "success"
+}

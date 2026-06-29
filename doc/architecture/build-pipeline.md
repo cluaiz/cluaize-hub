@@ -15,13 +15,13 @@ When a developer creates a new skill (e.g., `skills/web-intelligence/frontend-de
   2. Runs `cargo build --target wasm32-wasi --release`.
   3. Attaches the resulting `logic.wasm` binary to the GitHub Release.
 
-### 2. `state.prompt-cache` (The Neural Memory)
+### 2. `state.kvcache.bin` (The Neural Memory)
 - **What the developer writes:** The `SKILL.md` file (containing the prompt) and any detailed guides in `references/`.
 - **What the CI pipeline does:**
   1. Boots up a GPU-enabled runner with the Cluaiz inference engine.
   2. Runs a **Prefill Phase** on the `SKILL.md` prompt.
   3. Dumps the resulting Key-Value self-attention tensors into a binary file.
-  4. Attaches this `state.prompt-cache` file to the GitHub Release.
+  4. Attaches this `state.kvcache.bin` file to the GitHub Release.
 
 ## The End User Experience
 
@@ -31,6 +31,6 @@ When an end user runs the install command:
 ```bash
 cluaiz skill install frontend-dev
 ```
-The CLI automatically downloads the `SKILL.md` from the source tree, and pulls the pre-built `logic.wasm` and `state.prompt-cache` directly from the latest GitHub Release, dropping them into `~/.cluaiz/skills/frontend-dev/`.
+The CLI automatically downloads the `SKILL.md` from the source tree, and pulls the pre-built `logic.wasm` and `state.kvcache.bin` directly from the latest GitHub Release, dropping them into `~/.cluaiz/skills/frontend-dev/`.
 
 This ensures **Zero-Token Tax** execution on the edge device, with instantaneous skill loading.

@@ -1,0 +1,18 @@
+[package]
+name = "cluaizd_engine"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+engine-lmdb = { git = "https://github.com/cluaiz/cluaizd.git", branch = "main" }
+cluaizd-types = { git = "https://github.com/cluaiz/cluaizd.git", branch = "main" }
+cluaize-shared = { git = "https://github.com/cluaiz/cluaize.git", branch = "main" }
+sysinfo = "0.30"
+sha2 = "0.10"
+tracing = "0.1.44"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+ 

@@ -1,163 +1,150 @@
 <p align="center">
-  <img src="assets/cluaiz-skills-plugins.png" alt="The Official Registry for Cluaiz Skills & Plugins." width="">
+  <img src="assets/cluaize-hub.webp" alt="The Official Registry for the Cluaize Ecosystem." width="100%">
 </p>
 
-<h1 align="center">Cluaiz Skills</h1>
+<h1 align="center">Cluaize Hub</h1>
 
 <p align="center">
-  <strong>The Official Registry for Cluaiz Skills & Plugins.</strong>
+  <strong>The Official Central Registry for Cluaize Extensions, Plugins, Skills, Souls, & MCP.</strong>
 </p>
 
 <p align="center">
   <a href="https://github.com/cluaiz/skills/actions"><img src="https://img.shields.io/github/actions/workflow/status/cluaiz/skills/release-skills.yml?branch=main&style=for-the-badge" alt="CI"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="MIT License"></a>
-</p>
-
-<p align="center">
-  <a href="doc/overview.md">Overview</a> ·
-  <a href="doc/skill-format.md">Skill Format</a> ·
-  <a href="doc/quickstart.md">Quickstart</a> ·
-  <a href="doc/contributing.md">Contributing</a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=for-the-badge" alt="Apache 2.0 License"></a>
 </p>
 
 ---
 
-## What is this?
+## 🌟 What is this?
 
-This repository is the central registry for **skills** and **plugins** that extend the Cluaiz Agent. Each skill is a folder containing a `SKILL.md` file — a single document that serves as both machine-readable metadata and the agent's system prompt.
+This repository (**Cluaize Hub**) is the central nervous system for the Cluaize Inference Engine. It contains everything needed to extend the core engine's capabilities, give the AI new knowledge, and define agent personas.
 
-Skills can optionally include native execution binaries (`.wasm`), persistent memory (`.prompt-cache`), helper scripts, MCP connectors, and configuration files — all linked directly from the `SKILL.md`.
+The Cluaize architecture enforces a strict decoupling of logic from the Core Engine. The engine itself is a "dumb router"; all actual capabilities live here in this Hub.
 
-## Repository structure
+---
 
+## 🏗️ The 5 Pillars of Cluaize Ecosystem
+
+To understand how to build and contribute, you must understand the strict Cluaize Taxonomy.
+
+### 1. 🧩 Extensions (The Brain + Muscle Bundle)
+An **Extension** extends the entire system's behavior. It is a bundle that combines the Brain (instructions) and the Muscle (native code).
+- **Example:** `cluaize-database` (cluaizd). It contains a `SKILL.md` (to teach the AI how to write database queries) AND the native `cluaizd_engine.dll` (to actually execute them).
+
+### 2. 🔌 Plugins (The Functional Muscle)
+A **Plugin** is a standalone, compiled third-party binary (`.dll`, `.wasm`, `.so`) that gives the engine a specific hardware or OS-level capability.
+- **Example:** A heavy image-processing algorithm or a native web scraper. The engine loads this into memory and passes execution pointers to it.
+
+### 3. 🧠 Skills (The AI Recipes)
+A **Skill** is pure workflow and logic formatting (Markdown/CEL). It does not contain executable binaries. It teaches the AI *how* to use existing plugins or APIs.
+- **Example:** A "Summarize Document" skill that instructs the AI on the exact format to return. It uses a `SKILL.md` file.
+
+### 4. 👤 Souls (Personas)
+A **Soul** defines an AI agent's core identity, constraints, and bundles specific Skills together.
+- **Example:** `Senior_Rust_Developer` soul. It is bundled with the "Cargo Build" skill and the "Terminal" plugin, but restricted from accessing the "Medical Database".
+
+### 5. 🌐 MCP (Model Context Protocol)
+External standard connectors. If a tool runs on a completely different server (like Slack or GitHub), an MCP connector bridges it to the Cluaize Engine.
+
+---
+
+## 📂 Repository Structure
+
+```text
+cluaiz-hub/
+├── extensions/                  # Bundled (Brain + Muscle) systems
+│   └── cluaize-database/        # Example: The cluaizd database framework
+│       ├── manifest.json        # Capabilities & limits
+│       ├── SKILL.md             # The Brain
+│       └── native/              # The Muscle (.dll/.wasm)
+│
+├── plugins/                     # Standalone Muscle binaries (No Brains)
+│   ├── web-scraper/
+│   └── audio-transcriber/
+│
+├── skills/                      # Standalone Brain recipes (No Muscle)
+│   ├── productivity/
+│   └── coding/
+│
+├── souls/                       # Core Personas
+│   └── hacker/
+│       └── SOUL.md
+│
+├── mcp/                         # External connectors
+│
+├── doc/                         # Deep Documentation
+└── registry.json                # Auto-generated index of all modules
 ```
-cluaiz-skills/
-├── skills/                      # All skills, organized by category
-│   ├── dev-suite/               # Development tools
-│   ├── productivity/            # Document processing, scheduling
-│   └── ...
-│
-├── plugins/                     # All plugins, organized by category
-│   ├── search-engines/          # Web search connectors
-│   ├── databases/               # Database integrations
-│   └── ...
-│
-├── souls/                       # Core personas and behavior bundles
-│   ├── hacker/                  # Example soul identity
-│   │   └── SOUL.md              
-│   └── ...
-│
-├── doc/                         # Documentation
-│   ├── overview.md              # Skills vs Plugins vs Souls
-│   ├── skill-format.md          # SKILL.md spec, frontmatter, linking
-│   ├── plugin-format.md         # Plugin connectors, MCP, APIs
-│   ├── soul-format.md           # SOUL.md format and identity mapping
-│   ├── quickstart.md            # Create your first skill
-│   ├── cli.md                   # CLI reference
-│   └── contributing.md          # PR rules, review process
-│
-├── scripts/                     # Registry build automation
-├── .github/                     # CI/CD workflows
-├── registry.json                # Auto-generated skill index
-├── LICENSE                      # MIT
-└── README.md                    # This file
-```
 
-## How it works
+---
+
+## 🔄 End-to-End Core Mechanism (How it works)
 
 ```mermaid
 graph TD
-    U["👤 User Input"] --> B["🧠 Skill Router"]
-    B -->|Semantic Match| R["📄 SKILL.md"]
-
-    R --> NF["🏗️ Dispatcher"]
-
-    subgraph "NATIVE EXECUTION ENGINE"
-        NF -->|Memory Map| S["🧠 Prompt-Cache State"]
-        NF -->|Load Sandbox| BD["⚙️ WASM Logic"]
-        NF -->|Link Protocol| H["🤝 MCP Connector"]
+    U["User Prompt"] --> S["Soul (Persona)"]
+    
+    subgraph Hub["Cluaize Hub (Registry)"]
+        SK["Skills (SKILL.md)"]
+        EX["Extensions (Brain + Muscle)"]
     end
-
-    S -->|Inject Context| K["🚀 Inference Core"]
-    K -->|Acceleration| HW["🖥️ Hardware Acceleration"]
-
-    BD -->|Execute| K
-    H -->|Fetch Data| BD
-
-    K -->|Output| OUT["✅ Final Response"]
-    OUT --> U
-
-    style S fill:#223344,color:#fff,stroke:#445566,stroke-width:2px
-    style BD fill:#223344,color:#fff,stroke:#445566,stroke-width:2px
-    style H fill:#223344,color:#fff,stroke:#445566,stroke-width:2px
-    style K fill:#005577,color:#fff,stroke:#00aaff,stroke-width:2px
-    style HW fill:#772222,color:#fff,stroke:#ff5555,stroke-width:2px
+    
+    S -->|Bundles| SK
+    S -->|Bundles| EX
+    
+    SK -->|Injects Instructions| LLM["LLM Inference"]
+    EX -->|Injects Instructions| LLM
+    
+    LLM -->|Outputs CEL Query| ER["Core Engine (CEL Router)"]
+    
+    subgraph Execution["Execution Layer"]
+        PL["Plugins / Muscle (.dll/.wasm)"]
+        MCP["MCP (External Tools)"]
+    end
+    
+    ER -->|Loads Native| PL
+    ER -->|Network Call| MCP
+    
+    PL -->|Returns CXP Pointer| ER
+    MCP -->|Returns JSON| ER
+    
+    ER -->|Injects Context| LLM
+    LLM -->|Final Output| U
+    
+    style ER fill:#005577,color:#fff,stroke:#00aaff,stroke-width:2px
+    style EX fill:#552277,color:#fff,stroke:#aa55ff,stroke-width:2px
+    style PL fill:#772222,color:#fff,stroke:#ff5555,stroke-width:2px
 ```
 
-Every skill operates on a **Triple-Tier Architecture**:
+When the user queries the Engine, here is how an **Extension** (like the Database) flows:
 
-| Tier | File | Purpose |
-|---|---|---|
-| 🧠 **State** | `state.prompt-cache` | Persistent memory. Pre-computed context injected directly into the model's forward pass. Zero token tax. |
-| ⚙️ **Logic** | `logic.wasm` | Native execution. WebAssembly binary running at near-C++ speed inside a secure sandbox. |
-| 🤝 **Protocol** | `connector.json` | External bridge. MCP/API connectors linking the sandbox to databases, APIs, and services. |
+1. **Extension Load:** The Engine reads the `cluaize-database` extension and injects the `SKILL.md` into the AI's context window.
+2. **AI Inference:** The AI reads the instructions and outputs a CEL Query: `use plugin::database -> find User`.
+3. **Engine Routing:** The Engine intercepts the CEL string, realizes it needs the database, and loads the Muscle (`native/cluaizd_engine.dll`).
+4. **Native Execution:** The Engine executes the DLL at 0.05ms latency via C-FFI and passes the resulting memory pointer back to the AI context.
 
-## Quick start
-
-```bash
-# Install a skill
-cluaiz skill install <name>
-
-# Search for skills
-cluaiz skill search "pdf"
-
-# List installed skills
-cluaiz skill list
-
-# Update all
-cluaiz skill update --all
-```
-
-## Create a skill
-
-Create a folder, write a `SKILL.md`, done.
-
-```bash
-mkdir -p skills/productivity/my-skill
-```
-
-```markdown
----
-name: my-skill
-version: 1.0.0
-description: Summarize documents into bullet points.
-permissions:
-  filesystem: true
-  network: false
-  level: ReadOnly
-triggers:
-  semantic: [summarize, bullet-points]
 ---
 
-# Skill: Document Summarizer
+## 🚀 Quick Start (CLI)
 
-You are equipped with the Document Summarizer skill...
+You can install any module from the Hub directly via the Cluaize CLI:
+
+```bash
+# Install an entire Extension
+cluaiz install extension cluaize-database
+
+# Install a standalone Skill
+cluaiz install skill doc-summarizer
+
+# Apply a Soul to an Agent
+cluaiz soul set Senior_Rust_Developer
 ```
 
-See [Quickstart](doc/quickstart.md) for the full walkthrough and [Skill Format](doc/skill-format.md) for the complete reference.
+## 📜 Documentation
 
-## Documentation
+- [Contributing Guidelines](CONTRIBUTING.md)
+- [Security Policy](SECURITY.md)
+- [Ecosystem Vision](VISION.md)
 
-| Doc | What it covers |
-|---|---|
-| [Overview](doc/overview.md) | Skills vs Plugins vs Souls, repo structure, how it works |
-| [Skill Format](doc/skill-format.md) | SKILL.md spec, YAML frontmatter, asset linking, agent prompt rules |
-| [Plugin Format](doc/plugin-format.md) | MCP connectors, API bridges, env vars |
-| [Soul Format](doc/soul-format.md) | SOUL.md spec, core agent identities and personas |
-| [Quickstart](doc/quickstart.md) | Create your first skill in 5 minutes |
-| [CLI](doc/cli.md) | `cluaiz skill` command reference |
-| [Contributing](doc/contributing.md) | PR requirements, naming, review process |
-
-## License
-
-[MIT](LICENSE) © 2026 Cluaiz Technologies
+## ⚖️ License
+[Apache 2.0](LICENSE) © 2026 Cluaiz Technologies

@@ -6,7 +6,7 @@ We welcome contributions to the Cluaiz ecosystem! Please follow these guidelines
 
 1. **Discovery & Discussion**: Before writing code for a new feature, open an issue to discuss the architecture and approach.
 2. **Code Quality**: Ensure logic is safe and performant. Memory handling should be optimized.
-3. **Design Patterns**: Follow the established architecture (WASM for logic, Prompt-Cache for state, Connectors for protocol).
+3. **Design Patterns**: Follow the established architecture (WASM for logic, KV-Cache for state, Connectors for protocol).
 4. **Implementation**: Execute code as per the agreed-upon plan.
 5. **Verification**: Validate your changes and provide benchmarks if adding logic binaries.
 

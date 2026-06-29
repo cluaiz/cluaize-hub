@@ -17,7 +17,7 @@ Optional:
 
 ## How plugins differ from skills
 
-Skills teach the agent *new behaviors* using local assets (WASM, Prompt-Cache).
+Skills teach the agent *new behaviors* using local assets (WASM, KV-Cache).
 Plugins connect the agent to *external services* through standardized protocols.
 
 A plugin's `SKILL.md` follows the exact same format as a skill's `SKILL.md`:
@@ -121,7 +121,7 @@ Plugins are organized by function:
 | Category | Examples |
 |---|---|
 | `search-engines` | Brave Search, Google, Bing |
-| `databases` | DuckDB, PostgreSQL, SQLite |
+| `databases` | DuckDB, Relational DB, SQLite |
 | `mcp-servers` | Custom MCP tool servers |
 | `communication` | Slack, Discord, Email |
 | `cloud` | AWS, GCP, Azure connectors |

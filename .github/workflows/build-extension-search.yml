@@ -1,0 +1,58 @@
+name: Build Search Extension
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Extensions/cluaize-search/**'
+  pull_request:
+    paths:
+      - 'Extensions/cluaize-search/**'
+  workflow_dispatch:
+
+jobs:
+  build-extension:
+    name: Build Native Extension
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Rust Toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+          
+      - name: Build Release Binary
+        working-directory: Extensions/cluaize-search
+        run: cargo build --release
+
+      - name: Upload Artifact (Windows)
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: cluaize-search-windows
+          path: Extensions/cluaize-search/target/release/*.dll
+          if-no-files-found: error
+
+      - name: Upload Artifact (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: cluaize-search-linux
+          path: Extensions/cluaize-search/target/release/*.so
+          if-no-files-found: error
+
+      - name: Upload Artifact (macOS)
+        if: matrix.os == 'macos-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: cluaize-search-macos
+          path: Extensions/cluaize-search/target/release/*.dylib
+          if-no-files-found: error

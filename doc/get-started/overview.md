@@ -1,7 +1,7 @@
 # Cluaiz Skills & Plugins
 
-Cluaiz Skills and Plugins are the extension layer for the Cluaiz Sovereign OS.
-They teach the Sovereign Agent new capabilities — from running storage diagnostics
+Cluaiz Skills and Plugins are the extension layer for the Cluaiz Independent OS.
+They teach the Independent Agent new capabilities — from running storage diagnostics
 to generating PDFs to managing GitHub repositories — all while enforcing strict
 zero-trust security at the hardware level.
 
@@ -14,7 +14,7 @@ The `SKILL.md` has two parts:
 1. **YAML frontmatter** — machine-readable metadata (name, permissions, triggers,
    linked assets).
 2. **Markdown body** — the agent prompt. This is a direct system instruction that
-   tells the Sovereign Agent *when* to use the skill, *how* to invoke its tools,
+   tells the Independent Agent *when* to use the skill, *how* to invoke its tools,
    and *what rules* to follow.
 
 The Markdown body is **not** a user-facing README. It is loaded directly into the
@@ -33,9 +33,9 @@ ability to interact with the outside world through standardized protocols.
 | ------------ | ---------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------- |
 | **Purpose**  | Teach the agent a new capability               | Connect the agent to an external service or tool | Define the agent's core identity, persona, and overarching rules |
 | **Location** | `skills/<category>/<name>/`                    | `plugins/<category>/<name>/`                     | `souls/<name>/`                                                  |
-| **Assets**   | `logic.wasm`, `state.prompt-cache`, config files   | `connector.json`, `connector.js`, MCP configs    | None (Pure `SOUL.md` identity)                                   |
+| **Assets**   | `logic.wasm`, `state.kvcache.bin`, config files   | `connector.json`, `connector.js`, MCP configs    | None (Pure `SOUL.md` identity)                                   |
 | **Network**  | Typically offline (`network: false`)           | Typically online (`network: true`)               | Offline                                                          |
-| **Example**  | PDF extraction, code auditing, VRAM management | Brave Search, GitHub API, database connectors    | Sovereign Hacker, Data Scientist, Marketing Copywriter           |
+| **Example**  | PDF extraction, code auditing, VRAM management | Brave Search, GitHub API, database connectors    | Independent Hacker, Data Scientist, Marketing Copywriter           |
 
 ## How it works
 
@@ -43,7 +43,7 @@ ability to interact with the outside world through standardized protocols.
    and plugins.
 2. When you run `cluaiz skill install <name>`, the CLI downloads the skill folder
    (including `SKILL.md` and all linked assets) to `~/.cluaiz/skills/<name>/`.
-3. At runtime, the Sovereign Agent reads the `SKILL.md` to understand what the
+3. At runtime, the Independent Agent reads the `SKILL.md` to understand what the
    skill does and how to use it. If the YAML frontmatter links a `logic.wasm`
    binary, the agent can invoke it for high-performance native execution.
 4. Permissions declared in the frontmatter (`filesystem`, `network`, `level`) are
@@ -58,12 +58,12 @@ cluaiz-skills/
 │   │   ├── pdf-extractor/
 │   │   │   ├── SKILL.md         # Required — the skill definition
 │   │   │   ├── logic.wasm       # Optional — native execution binary
-│   │   │   └── state.prompt-cache   # Optional — persistent memory
+│   │   │   └── state.kvcache.bin   # Optional — persistent memory
 │   │   └── calendar-scheduler/
 │   │       └── SKILL.md
 │   ├── dev-suite/
 │   │   └── ...
-│   └── sovereign-ops/
+│   └── Independent-ops/
 │       └── ...
 │
 ├── plugins/                     # All plugins, organized by category
@@ -75,7 +75,7 @@ cluaiz-skills/
 │       └── ...
 │
 ├── souls/                       # Core personas and identities
-│   ├── sovereign-hacker/
+│   ├── Independent-hacker/
 │   │   └── SOUL.md
 │   └── ...
 │

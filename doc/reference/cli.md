@@ -24,7 +24,7 @@ Downloads the skill folder (SKILL.md + all linked assets) to
 The CLI resolves the skill by checking:
 1. Exact ID match (e.g., `cluaiz.skill.ops.storage`)
 2. Name match (e.g., `storage-probe`)
-3. Folder path match (e.g., `sovereign-ops/storage-probe`)
+3. Folder path match (e.g., `Independent-ops/storage-probe`)
 
 ### Update
 

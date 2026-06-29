@@ -1,0 +1,21 @@
+// Deep Search Macro
+// Executed by the AI when `system_booster.think_mode` is ON.
+// This macro fetches multiple aspects of a problem concurrently.
+
+let $queries = [
+    "Rust 2026 async updates",
+    "Rust 2026 memory model changes",
+    "Rust 2026 performance benchmarks"
+];
+
+// Map over the queries and execute them in parallel (using Cluaize Engine's multiplexer)
+let $deep_results = $queries.map((q) => 
+    use extension::cluaize-search -> query(
+        q: q, 
+        max_context_length: 8192,
+        timeout_secs: 15
+    )
+);
+
+// Filter out empty results and return
+return $deep_results.filter((res) => res.status == "success" && res.results_count > 0);

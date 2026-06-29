@@ -70,7 +70,7 @@ alongside the `SKILL.md` and link them in the frontmatter:
 skills/productivity/my-skill/
 ├── SKILL.md
 ├── logic.wasm           # Optional — native execution binary
-├── state.prompt-cache       # Optional — persistent memory
+├── state.kvcache.bin       # Optional — persistent memory
 └── config.json          # Optional — runtime configuration
 ```
 
@@ -79,7 +79,7 @@ Link them in the YAML:
 ```yaml
 links:
   wasm: "./logic.wasm"
-  prompt_cache: "./state.prompt-cache"
+  prompt_cache: "./state.kvcache.bin"
   config: "./config.json"
 ```
 

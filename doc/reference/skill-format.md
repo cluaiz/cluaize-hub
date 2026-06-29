@@ -10,7 +10,7 @@ Required:
 
 Optional:
 
-- Any supporting files: `logic.wasm`, `state.prompt-cache`, config JSONs, scripts,
+- Any supporting files: `logic.wasm`, `state.kvcache.bin`, config JSONs, scripts,
   reference docs, templates.
 
 Installed skill metadata (written by the CLI):
@@ -65,7 +65,7 @@ triggers:
 
 links:
   wasm: "./logic.wasm"
-  prompt_cache: "./state.prompt-cache"
+  prompt_cache: "./state.kvcache.bin"
 ---
 ```
 
@@ -98,7 +98,7 @@ alongside the skill.
 ```yaml
 links:
   wasm: "./logic.wasm"
-  prompt_cache: "./state.prompt-cache"
+  prompt_cache: "./state.kvcache.bin"
   config: "./settings.json"
   mcp: "./connector.json"
 ```
@@ -106,7 +106,7 @@ links:
 | Link key | File type | Purpose |
 |---|---|---|
 | `wasm` | `.wasm` | WebAssembly binary. High-performance native logic executed in a secure sandbox. Zero-copy, memory-safe. |
-| `prompt_cache` | `.prompt-cache` | Persistent key-value memory. Stores historical data, baselines, or session state across agent runs. |
+| `prompt_cache` | `.kvcache.bin` | Persistent key-value memory. Stores historical data, baselines, or session state across agent runs. |
 | `config` | `.json` / `.yaml` | Configuration data the agent reads at runtime (API endpoints, default parameters, tool schemas). |
 | `mcp` | `.json` / `.js` | MCP (Model Context Protocol) server connector. Allows the agent to communicate with local or remote tool servers. |
 | `db` | `.db` / `.sqlite` | Embedded database for skills that need structured query access. |
@@ -154,7 +154,7 @@ Explain what each linked file does and how the agent should interact with it.
 ## How to use this skill (Associated Files)
 
 - **`logic.wasm`**: The core execution binary. Invoke via `cluaiz-run`.
-- **`state.prompt-cache`**: Historical baseline metrics. Read before giving results.
+- **`state.kvcache.bin`**: Historical baseline metrics. Read before giving results.
 ```
 
 ### 4. Execution instructions
@@ -173,7 +173,7 @@ Hard constraints the agent must obey.
 ```markdown
 ## Guardrails and Rules
 1. NEVER run write benchmarks on OS directories without explicit consent.
-2. Always compare results against prompt-cache baselines.
+2. Always compare results against kvcache.bin baselines.
 3. No network access. Do not send results externally.
 ```
 
@@ -182,7 +182,7 @@ Hard constraints the agent must obey.
 Only text-based files and the following binary types are accepted:
 
 - `.wasm` — WebAssembly binaries
-- `.prompt-cache` — Key-value cache state files
+- `.kvcache.bin` — Key-value cache state files
 - `.db` / `.sqlite` — Embedded databases
 
 Text file types: `.md`, `.json`, `.yaml`, `.yml`, `.toml`, `.js`, `.ts`, `.py`,

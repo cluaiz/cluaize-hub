@@ -1,0 +1,38 @@
+name: "cluaize-search"
+version: "1.0.0"
+description: "Native Dynamic Library extension for Cluaize Engine. Provides VRAM-aware web metasearch."
+author: "Cluaiz Technologies"
+type: "extension"
+
+discovery:
+  semantic_triggers: ["search", "web", "find"]
+  cel_grammar: "use extension::cluaize-search -> search(...)"
+
+activation:
+  lazy_load: true
+  trigger_on: 
+    - "on_command:use extension::cluaize-search"
+
+permissions:
+  max_memory_mb: 256
+  max_cpu_time_ms: 5000
+  network_access: true
+  vram_kv_inject: true
+  file_system: "none"
+  mid_layer_jit_injection: true
+
+settings:
+  search_api_key: ""
+  search_api_type: "duckduckgo" # options: "tavily", "serpapi", "duckduckgo"
+
+
+system_bindings:
+  - "system_booster.think_mode"
+  - "system_booster.flash_attention"
+  - "system_booster.response_length"
+
+execution:
+  envelope: "NATIVE"
+  entry_point: "execute_cel"
+  payload_format: "MsgPack"
+  binary_path: "target/release/plugin.dll"

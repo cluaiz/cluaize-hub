@@ -1,0 +1,40 @@
+{
+  "results": [
+    {
+      "favicon": "https://www.google.com/s2/favicons?sz=64&domain=www.facebook.com",
+      "raw_content": "Error fetching: Website returned error status: 400 Bad Request",
+      "snippet": "In 2023, these were the top 50 most widely used AI Tools Here are the top 10 from the list. 1. ChatGPT 2. Character.ai 3. QuillBot 4. Midjourney",
+      "title": "Ranking the biggest AI tools right now - Facebook",
+      "url": "https://www.facebook.com/Danmartell/posts/ranking-the-biggest-ai-tools-right-now/1566005771561554"
+    },
+    {
+      "favicon": "https://www.google.com/s2/favicons?sz=64&domain=zapier.com",
+      "raw_content": "The best AI productivity tools in 2026 | Zapier Skip to content Products Zapier Automation Platform No-code automation across 9,000+ apps Products Zap workflows Do-it-yourself automation for workflows Tables Store data your Zap workflows can read and update Forms Capture inputs that trigger workflows Canvas Plan and map your workflows with AI Agents Create your own AI assistants for any task Chatbots Answer customer questions with AI chatbots Capabilities App integrations Explore 9,000+ app conn",
+      "snippet": "The best AI productivity tools by category · AI orchestration and automation (Zapier) · Chatbots (ChatGPT, Claude, Meta AI) · AI agent builders (",
+      "title": "The best AI productivity tools in 2026 - Zapier",
+      "url": "https://zapier.com/blog/best-ai-productivity-tools"
+    },
+    {
+      "favicon": "https://www.google.com/s2/favicons?sz=64&domain=www.techradar.com",
+      "raw_content": "I tried 70+ best AI tools in 2026 | TechRadar Skip to main content Become a TechRadar Insider - Join our community JOIN NOW 5 Exclusive perks 24/7 Insider insights 44K+ Active Members Weekly newsletters Get daily news, weekly deals and the week’s top tech stories Commenting access Join the conversation, share your thoughts and get expert advice Member badges Earn badges as you explore news, deals, reviews, guides and more Exclusive deals Save on gadgets, subscriptions and accessories with handpi",
+      "snippet": "Best AI chatbots; Best AI website builders; Best AI image generators; Best AI virtual assistants; Best AI notes apps; Best AI voice and music",
+      "title": "I tried 70+ best AI tools in 2026 - TechRadar",
+      "url": "https://www.techradar.com/best/best-ai-tools"
+    },
+    {
+      "favicon": "https://www.google.com/s2/favicons?sz=64&domain=www.lindy.ai",
+      "raw_content": null,
+      "snippet": "Lindy –– best for automating complex workflows with custom AI agents; Perplexity –– best for real-time research and fact-checked answers; Jasper",
+      "title": "The 18 Best AI Platforms in 2026 – Tested & Reviewed - Lindy",
+      "url": "https://www.lindy.ai/blog/ai-platforms"
+    },
+    {
+      "favicon": "https://www.google.com/s2/favicons?sz=64&domain=medium.com",
+      "raw_content": null,
+      "snippet": "ChatGPT: Best at casual use, deep research, and voice mode; Claude: Best at writing, instruction following, and task automation; Gemini: Best at",
+      "title": "The Best AI Tools for 2026 - Medium",
+      "url": "https://medium.com/artificial-corner/the-best-ai-tools-for-2026-933535a44f8b"
+    }
+  ],
+  "status": "success"
+}

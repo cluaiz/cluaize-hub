@@ -1,0 +1,69 @@
+[
+  {
+    "id": "get-started",
+    "title": "🚀 Get Started",
+    "groups": [
+      {
+        "group": "Overview",
+        "pages": [
+          { "slug": "overview", "title": "📖 Overview", "file_path": "doc/get-started/overview.md" },
+          { "slug": "quickstart", "title": "⚡ Quickstart", "file_path": "doc/get-started/quickstart.md" },
+          { "slug": "plugin-tutorial", "title": "🎓 Plugin Tutorial", "file_path": "doc/get-started/plugin-tutorial.md" }
+        ]
+      },
+      {
+        "group": "Community",
+        "pages": [
+          { "slug": "contributing", "title": "🤝 Contributing", "file_path": "doc/get-started/contributing.md" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "reference-manual",
+    "title": "📚 Reference Manual",
+    "groups": [
+      {
+        "group": "Formats & Specs",
+        "pages": [
+          { "slug": "skill-format", "title": "🛠️ Skill Format", "file_path": "doc/reference/skill-format.md" },
+          { "slug": "plugin-format", "title": "🔌 Plugin Format", "file_path": "doc/reference/plugin-format.md" },
+          { "slug": "soul-format", "title": "🧠 Soul Format", "file_path": "doc/reference/soul-format.md" }
+        ]
+      },
+      {
+        "group": "Tools",
+        "pages": [
+          { "slug": "cli", "title": "💻 CLI Reference", "file_path": "doc/reference/cli.md" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "architecture-topics",
+    "title": "⚙️ Architecture",
+    "groups": [
+      {
+        "group": "System Design",
+        "pages": [
+          { "slug": "manifest-architecture", "title": "📜 Manifest & Registry", "file_path": "doc/architecture/manifest_architecture.md" },
+          { "slug": "build-pipeline", "title": "🏗️ Build Pipeline", "file_path": "doc/architecture/build-pipeline.md" },
+          { "slug": "skill-architecture", "title": "🧠 Skill Architecture", "file_path": "doc/architecture/skill_architecture.md" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tools-tutorials",
+    "title": "🛠️ Tools Tutorials",
+    "groups": [
+      {
+        "group": "Extensions",
+        "pages": [
+          { "slug": "cluaize-db", "title": "💾 cluaize-db", "file_path": "doc/tools/cluaize-db.md" },
+          { "slug": "cluaize-search", "title": "🔍 cluaize-search", "file_path": "doc/tools/cluaize-search.md" }
+        ]
+      }
+    ]
+  }
+]

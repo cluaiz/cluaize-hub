@@ -1,0 +1,32 @@
+name: "cluaize-math"
+version: "1.0.0"
+description: "Sandboxed WebAssembly mathematical and statistical calculator extension."
+author: "Cluaiz Technologies"
+type: "extension"
+
+discovery:
+  semantic_triggers: ["math", "statistics", "calculator"]
+  cel_grammar: "use extension::cluaize-math -> execute(...)"
+
+activation:
+  lazy_load: true
+  trigger_on:
+    - "on_command:use extension::cluaize-math"
+
+permissions:
+  max_memory_mb: 32
+  max_cpu_time_ms: 1000
+  network_access: false
+  vram_kv_inject: false
+  file_system: "none"
+  mid_layer_jit_injection: false
+
+system_bindings:
+  - "system_booster.think_mode"
+  - "system_booster.auto_round"
+
+execution:
+  envelope: "WASM"
+  entry_point: "execute_cel"
+  payload_format: "MsgPack"
+  binary_path: ".cluaize/bin/plugin.wasm"
