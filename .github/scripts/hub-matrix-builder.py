@@ -16,7 +16,7 @@ def main():
     packages_to_build = []
     
     for file in changed_files:
-        if file.endswith("package.json") and ("extensions/" in file or "skills/" in file or "plugins/" in file or "mcp/" in file or "souls/" in file):
+        if file.lower().endswith("package.json") and ("extensions/" in file.lower() or "skills/" in file.lower() or "plugins/" in file.lower() or "mcp/" in file.lower() or "souls/" in file.lower()):
             packages_to_build.append(file)
             
     if not packages_to_build:
@@ -46,7 +46,7 @@ def main():
             continue
         
         # Determine prefix based on category path
-        category = pkg_path.split('/')[0]
+        category = pkg_path.split('/')[0].lower()
         prefix = "ext"
         if category == "skills": prefix = "skill"
         elif category == "plugins": prefix = "plugin"
@@ -71,12 +71,12 @@ def main():
         mac_link = f"{base_url}/lib{pkg_id}_macos_arm64.dylib"
         lin_link = f"{base_url}/lib{pkg_id}_linux_x64.so"
         
-        release_body = f"## 📦 {title} - v{version}\\n\\n{description}\\n\\n### 📝 Changelog\\n{changelog}\\n\\n### ⬇️ Assets (Downloads)\\n"
-        release_body += f"- [📦 Master ZIP Bundle (Files & Assets)]({zip_link})\\n"
+        release_body = f"## 📦 {title} - v{version}\n\n{description}\n\n### 📝 Changelog\n{changelog}\n\n### ⬇️ Assets (Downloads)\n"
+        release_body += f"- [📦 Master ZIP Bundle (Files & Assets)]({zip_link})\n"
         if build_type == "binary":
-            release_body += f"- [🪟 Windows Binary]({win_link})\\n"
-            release_body += f"- [🍎 macOS Binary]({mac_link})\\n"
-            release_body += f"- [🐧 Linux Binary]({lin_link})\\n"
+            release_body += f"- [🪟 Windows Binary]({win_link})\n"
+            release_body += f"- [🍎 macOS Binary]({mac_link})\n"
+            release_body += f"- [🐧 Linux Binary]({lin_link})\n"
             
         # Helper function to append common fields
         def add_job(job):
