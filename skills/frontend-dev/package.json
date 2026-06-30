@@ -4,7 +4,7 @@
   "provider": "Cluaiz Ecosystem",
   "hub_type": "skill",
   "build_type": "none",
-  "github_action": true,
+  "github_action": false,
   "logo": "/assets/frontend-dev.webp",
   "title": "Frontend Web Developer",
   "description": "An expert skill that empowers the Cluaiz agent with full frontend web development capabilities, including React, Next.js, and CSS design.",
@@ -17,8 +17,9 @@
       "changelog": "Initial stable release.",
       "files": {
         "skill": "/SKILL.md",
+        "scripts": "/scripts",
         "references": "/references",
-        "file_directory": "https://github.com/cluaiz/cluaiz-hub/releases/download/skill-frontend-dev/frontend-dev-files-v1.0.0.zip"
+        "file_directory": "https://github.com/cluaiz/cluaiz-hub/releases/download/skill-frontend-dev-v1.0.0/frontend-dev-files.zip"
       }
     }
   }

@@ -53,18 +53,48 @@ def main():
         elif category == "mcp": prefix = "mcp"
         elif category == "souls": prefix = "soul"
         
-        tag_name = f"{prefix}-{pkg_id}"
+        # Version specific tag
+        tag_name = f"{prefix}-{pkg_id}-v{version}"
         pkg_dir = os.path.dirname(pkg_path)
         
+        title = data.get("title", pkg_id)
+        description = data.get("description", "No description provided.")
+        
+        changelog = "No changelog provided."
+        if "versions" in data and version in data["versions"]:
+            changelog = data["versions"][version].get("changelog", changelog)
+            
+        # Build the exact download URLs for the markdown body
+        base_url = f"https://github.com/cluaiz/cluaiz-hub/releases/download/{tag_name}"
+        zip_link = f"{base_url}/{pkg_id}-files.zip"
+        win_link = f"{base_url}/{pkg_id}_windows_x64.dll"
+        mac_link = f"{base_url}/lib{pkg_id}_macos_arm64.dylib"
+        lin_link = f"{base_url}/lib{pkg_id}_linux_x64.so"
+        
+        release_body = f"## 📦 {title} - v{version}\\n\\n{description}\\n\\n### 📝 Changelog\\n{changelog}\\n\\n### ⬇️ Assets (Downloads)\\n"
+        release_body += f"- [📦 Master ZIP Bundle (Files & Assets)]({zip_link})\\n"
+        if build_type == "binary":
+            release_body += f"- [🪟 Windows Binary]({win_link})\\n"
+            release_body += f"- [🍎 macOS Binary]({mac_link})\\n"
+            release_body += f"- [🐧 Linux Binary]({lin_link})\\n"
+            
+        # Helper function to append common fields
+        def add_job(job):
+            job.update({
+                "title": title,
+                "release_body": release_body
+            })
+            matrix_jobs.append(job)
+        
         # ALWAYS generate a Master ZIP job for every package
-        matrix_jobs.append({
+        add_job({
             "id": pkg_id,
             "target": "master-zip",
             "os": "ubuntu-latest",
             "version": version,
             "tag_name": tag_name,
             "pkg_dir": pkg_dir,
-            "filename": f"{pkg_id}-files-v{version}.zip",
+            "filename": f"{pkg_id}-files.zip",
             "is_zip": "true"
         })
         
@@ -75,40 +105,40 @@ def main():
                 builds_os = data["versions"][version].get("builds_os", ["windows", "macos", "linux"])
                 
             if "windows" in builds_os:
-                matrix_jobs.append({
+                add_job({
                     "id": pkg_id,
                     "target": "windows-x64",
                     "os": "windows-latest",
                     "version": version,
                     "tag_name": tag_name,
                     "pkg_dir": pkg_dir,
-                    "filename": f"{pkg_id}_windows_x64_v{version}.dll",
+                    "filename": f"{pkg_id}_windows_x64.dll",
                     "is_zip": "false"
                 })
             if "linux" in builds_os:
-                matrix_jobs.append({
+                add_job({
                     "id": pkg_id,
                     "target": "linux-x64",
                     "os": "ubuntu-latest",
                     "version": version,
                     "tag_name": tag_name,
                     "pkg_dir": pkg_dir,
-                    "filename": f"lib{pkg_id}_linux_x64_v{version}.so",
+                    "filename": f"lib{pkg_id}_linux_x64.so",
                     "is_zip": "false"
                 })
             if "macos" in builds_os:
-                matrix_jobs.append({
+                add_job({
                     "id": pkg_id,
                     "target": "macos-arm64",
                     "os": "macos-14",
                     "version": version,
                     "tag_name": tag_name,
                     "pkg_dir": pkg_dir,
-                    "filename": f"lib{pkg_id}_macos_arm64_v{version}.dylib",
+                    "filename": f"lib{pkg_id}_macos_arm64.dylib",
                     "is_zip": "false"
                 })
         elif build_type == "wasm":
-            matrix_jobs.append({
+            add_job({
                 "id": pkg_id,
                 "target": "wasm32",
                 "os": "ubuntu-latest",

@@ -71,11 +71,10 @@ Here is a full example of a perfectly structured Extension package:
   "github_action": true,
   "logo": "/assets/cluaiz-search.webp",
   "title": "Cluaiz Local Search Indexer",
-  "description": "Local search indexing extension for Cluaiz Engine. Built in C++ for cross-platform data retrieval, supporting inverted index structures and exact string matching without network dependency.",
+  "description": "Powerful local search indexing extension for the Cluaiz Engine. Enables lightning-fast, privacy-first data retrieval and exact match indexing without internet dependency. Securely organizes your local workspace for real-time AI access.",
   "tags": [
     "Search",
     "Inverted-Index",
-    "C++",
     "Cross-platform",
     "Retrieval"
   ],
@@ -87,16 +86,16 @@ Here is a full example of a perfectly structured Extension package:
       "builds_os": ["windows", "macos", "linux"],
       "changelog": "Nightly release with latest native performance improvements.",
       "os": {
-        "windows": "https://github.com/cluaiz/cluaiz-hub/releases/download/ext-cluaiz-search/cluaiz-search_windows_x64_v0.1.0.dll",
-        "macos": "https://github.com/cluaiz/cluaiz-hub/releases/download/ext-cluaiz-search/libcluaiz-search_macos_arm64_v0.1.0.dylib",
-        "linux": "https://github.com/cluaiz/cluaiz-hub/releases/download/ext-cluaiz-search/libcluaiz-search_linux_x64_v0.1.0.so"
+        "windows": "https://github.com/cluaiz/cluaiz-hub/releases/download/ext-cluaiz-search-v0.1.0/cluaiz-search_windows_x64.dll",
+        "macos": "https://github.com/cluaiz/cluaiz-hub/releases/download/ext-cluaiz-search-v0.1.0/libcluaiz-search_macos_arm64.dylib",
+        "linux": "https://github.com/cluaiz/cluaiz-hub/releases/download/ext-cluaiz-search-v0.1.0/libcluaiz-search_linux_x64.so"
       },
       "files": {
         "skill": "/SKILL.md",
         "scripts": "/scripts",
         "references": "/references",
         "manifest": "/manifest-extension.yaml",
-        "file_directory": "https://github.com/cluaiz/cluaiz-hub/releases/download/ext-cluaiz-search/cluaiz-search-files-v0.1.0.zip"
+        "file_directory": "https://github.com/cluaiz/cluaiz-hub/releases/download/ext-cluaiz-search-v0.1.0/cluaiz-search-files.zip"
       }
     }
   }

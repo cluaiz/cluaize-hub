@@ -4,7 +4,7 @@
   "provider": "Cluaiz Ecosystem",
   "hub_type": "skill",
   "build_type": "none",
-  "github_action": true,
+  "github_action": false,
   "logo": "/assets/minimax-music-gen.webp",
   "title": "Minimax Music Gen",
   "description": "An advanced music generation skill utilizing Minimax architecture for dynamic soundtrack creation and deep audio synthesis natively in Cluaiz.",
@@ -20,8 +20,9 @@
       "changelog": "Initial stable release.",
       "files": {
         "skill": "/SKILL.md",
+        "scripts": "/scripts",
         "references": "/references",
-        "file_directory": "https://github.com/cluaiz/cluaiz-hub/releases/download/skill-minimax-music-gen/minimax-music-gen-files-v1.0.0.zip"
+        "file_directory": "https://github.com/cluaiz/cluaiz-hub/releases/download/skill-minimax-music-gen-v1.0.0/minimax-music-gen-files.zip"
       }
     }
   }

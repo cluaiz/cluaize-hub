@@ -64,12 +64,12 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ matrix.tag_name }}
-          name: "${{ matrix.id }} (Unified Release)"
-          body: "Automated rolling release for ${{ matrix.id }}. All versions are appended here."
+          name: "${{ matrix.title }} - v${{ matrix.version }}"
+          body: ${{ matrix.release_body }}
           draft: false
           prerelease: false
           files: build/${{ matrix.filename }}
           fail_on_unmatched_files: true
-          append_body: true
+          append_body: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
