@@ -81,11 +81,3 @@ jobs:
             done
           fi
 
-      - name: Generate registry.json
-        run: python scripts/build_registry.py
-
-      - name: Commit and push registry updates
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "chore: update registry.json with new releases [skip ci]"
-          file_pattern: "registry.json"

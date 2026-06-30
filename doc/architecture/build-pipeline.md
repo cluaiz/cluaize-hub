@@ -121,7 +121,7 @@ Here is a full example of a perfectly structured Extension package:
 #### Level 2: Granular Version Control (`versions`)
 The `versions` object gives developers explicit control over every historical version of their tool.
 
-- `updated_at`: The absolute timestamp of this version build (e.g. `2026-06-30T10:00:00Z`). **Security & Caching:** The CI/CD Python script and the Engine use this time signature. If a developer builds 10 times a day without bumping the version number (e.g., `v0.1.0`), they MUST change this timestamp. The build action will NOT trigger unless this time is modified. (Note: The master `registry.json`'s `updated` time must also be synced).
+- `updated_at`: The absolute timestamp of this version build (e.g. `2026-06-30T10:00:00Z`). **Security & Caching:** The CI/CD Python script and the Engine use this time signature. If a developer builds 10 times a day without bumping the version number (e.g., `v0.1.0`), they MUST change this timestamp. The build action will NOT trigger unless this time is modified.
 - `builds_os`: An array defining exactly which targets to compile. E.g., adding `"android"` to this array tells the CI/CD to instantly spin up mobile compilation targets.
 - `os` (The Heavy Binaries): 
   - Explicit URLs to the OS-specific compiled binaries on GitHub Releases. 

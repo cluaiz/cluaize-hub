@@ -57,15 +57,35 @@ jobs:
           if [ "${{ matrix.is_zip }}" == "true" ]; then
             echo "Bundling ZIP for ${{ matrix.id }}..."
             cd ${{ matrix.pkg_dir }}
-            # Using find/zip to package local static assets
-            zip -r ../../build/${{ matrix.filename }} . -i SKILL.md README.md scripts/\* references/\* assets/\*
+            
+            FILES_TO_ZIP="README.md"
+            if [ -f "SKILL.md" ]; then FILES_TO_ZIP="$FILES_TO_ZIP SKILL.md"; fi
+            if [ -f "manifest-extension.yaml" ]; then FILES_TO_ZIP="$FILES_TO_ZIP manifest-extension.yaml"; fi
+            if [ -d "scripts" ]; then FILES_TO_ZIP="$FILES_TO_ZIP scripts"; fi
+            if [ -d "references" ]; then FILES_TO_ZIP="$FILES_TO_ZIP references"; fi
+            if [ -d "assets" ]; then FILES_TO_ZIP="$FILES_TO_ZIP assets"; fi
+            
+            zip -r ../../build/${{ matrix.filename }} $FILES_TO_ZIP
             cd -
           else
-            echo "Simulated build for ${{ matrix.id }} on ${{ matrix.target }} version ${{ matrix.version }}" > build/${{ matrix.filename }}
+            echo "Building binary for ${{ matrix.id }} on ${{ matrix.target }}..."
+            cd ${{ matrix.pkg_dir }}
+            # Run the actual Rust build
+            cargo build --release
+            cd -
+            
+            # Locate the compiled native binary and rename it
+            if [ "${{ matrix.os }}" == "windows-latest" ]; then
+              cp ${{ matrix.pkg_dir }}/target/release/*.dll build/${{ matrix.filename }}
+            elif [ "${{ matrix.os }}" == "macos-14" ]; then
+              cp ${{ matrix.pkg_dir }}/target/release/*.dylib build/${{ matrix.filename }}
+            elif [ "${{ matrix.os }}" == "ubuntu-latest" ]; then
+              cp ${{ matrix.pkg_dir }}/target/release/*.so build/${{ matrix.filename }}
+            fi
           fi
 
       - name: Upload to Unified Package Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ matrix.tag_name }}
           name: "${{ matrix.title }} - v${{ matrix.version }}"
