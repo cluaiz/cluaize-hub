@@ -10,7 +10,7 @@
   "description": "Powerful local search indexing extension for the Cluaiz Engine. Enables lightning-fast, privacy-first data retrieval and exact match indexing without internet dependency. Securely organizes your local workspace for real-time AI access.",
   "tags": [
     "Search",
-    "Inverted-Index", 
+    "Inverted-Index",
     "Cross-platform",
     "Retrieval"
   ],
@@ -18,7 +18,7 @@
   "latest_version": "0.1.0",
   "versions": {
     "0.1.0": {
-      "updated_at": "2026-06-30T18:00:00Z",
+      "updated_at": "2026-06-30T18:51:00Z",
       "builds_os": [
         "windows",
         "macos",

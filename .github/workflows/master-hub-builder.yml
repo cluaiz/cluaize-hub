@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - 'extensions/**'
-      - 'Extensions/**'
       - 'skills/**'
       - 'plugins/**'
       - 'mcp/**'

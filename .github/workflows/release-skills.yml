@@ -8,6 +8,8 @@ on:
       - 'skills/**'
       - 'plugins/**'
       - 'souls/**'
+      - 'extensions/**'
+      - 'mcp/**'
   workflow_dispatch:
 
 jobs:

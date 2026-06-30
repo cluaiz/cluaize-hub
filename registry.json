@@ -1,21 +1,11 @@
 {
-  "_meta": {
-    "updated": "2026-06-30T13:09:35.408301Z"
-  },
-  "skills": {
-    "minimax-music-gen": {
-      "latest": "1.0.0",
-      "versions": {
-        "1.0.0": "https://github.com/cluaiz/skills/releases/download/minimax-music-gen-latest/minimax-music-gen-v1.0.0.zip"
-      }
-    },
-    "frontend-dev": {
-      "latest": "1.0.0",
-      "versions": {
-        "1.0.0": "https://github.com/cluaiz/skills/releases/download/frontend-dev-latest/frontend-dev-v1.0.0.zip"
-      }
-    }
-  },
-  "plugins": {},
-  "souls": {}
+  "version": "1.0.0",
+  "updated": "2026-06-30T18:51:00Z",
+  "routing": {
+    "extensions": "extensions/family.json",
+    "plugins": "plugins/family.json",
+    "skills": "skills/family.json",
+    "mcp": "mcp/family.json",
+    "souls": "souls/family.json"
+  }
 }
